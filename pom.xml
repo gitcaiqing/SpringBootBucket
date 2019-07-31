@@ -18,6 +18,7 @@
     <modules>
         <module>boot-jpa</module>
         <module>boot-websocket</module>
+        <module>boot-kafka</module>
     </modules>
 
     <dependencies>

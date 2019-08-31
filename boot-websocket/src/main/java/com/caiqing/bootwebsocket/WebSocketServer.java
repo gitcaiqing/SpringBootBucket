@@ -1,15 +1,12 @@
 package com.caiqing.bootwebsocket;
 
+
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.websocket.OnClose;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.LongAdder;
 
@@ -36,16 +33,16 @@ import java.util.concurrent.atomic.LongAdder;
   * 
   * ━━━━━━感觉萌萌哒━━━━━━ 
   */
-@ServerEndpoint("/websocket")
+@ServerEndpoint(value = "/websocket")
 @Component
 @Slf4j
-public class WebSocketService {
+public class WebSocketServer {
 
     //记录当前websocket的连接数，保证线程安全
     private static LongAdder connectAccount = new LongAdder();
 
     //存放每个客户端对应的websocketServer对象（需保证线程安全）
-    private static CopyOnWriteArraySet<WebSocketService> webSocketSet = new CopyOnWriteArraySet<>();
+    private static CopyOnWriteArraySet<WebSocketServer> webSocketSet = new CopyOnWriteArraySet<>();
 
     //与客户端的连接对象
     private Session session;
@@ -82,8 +79,26 @@ public class WebSocketService {
         log.info("收到客户端发来的消息，message -->{}", message);
     }
 
-    public void sendMessage(String messaeg){
+    /**
+     * 发送消息
+     * @param messaeg
+     */
+    public void sendMessage(String messaeg) throws IOException {
+        this.session.getBasicRemote().sendText(messaeg);
+    }
 
+    /**
+     * 群发消息
+     * @param message
+     */
+    public static void sendInfo(String message){
+        for(WebSocketServer webSocketService : webSocketSet){
+            try {
+                webSocketService.sendMessage(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

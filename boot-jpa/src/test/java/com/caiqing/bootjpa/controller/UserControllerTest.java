@@ -39,7 +39,6 @@ public class UserControllerTest {
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        System.out.println(mockMvcResult);
         log.info("测试-响应内容：{}",mockMvcResult);
     }
 
@@ -50,7 +49,7 @@ public class UserControllerTest {
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        System.out.println(mockMvcResult);
+        log.info("测试-响应内容：{}",mockMvcResult);
     }
 
     @Test
@@ -60,7 +59,7 @@ public class UserControllerTest {
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        System.out.println(mockMvcResult);
+        log.info("测试-响应内容：{}",mockMvcResult);
     }
 
     @Test
@@ -70,6 +69,34 @@ public class UserControllerTest {
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        System.out.println(mockMvcResult);
+        log.info("测试-响应内容：{}",mockMvcResult);
+    }
+
+    @Test
+    public void getUserMap() {
+        String uri = "/user/getUserMap";
+        try {
+            String mockMvcResult = mockMvc
+                    .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andReturn().getResponse().getContentAsString();
+            log.info("测试-响应内容：{}",mockMvcResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void joinUserMap() {
+        String uri = "/user/joinUserMap";
+        try {
+            String mockMvcResult = mockMvc
+                    .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andReturn().getResponse().getContentAsString();
+            log.info("测试-响应内容：{}",mockMvcResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

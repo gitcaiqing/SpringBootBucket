@@ -1,6 +1,10 @@
 package com.caiqing.bootjpa.util;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 public class ResultModel<T> {
@@ -10,6 +14,9 @@ public class ResultModel<T> {
     private Integer resultCode = 200;
 
     private String message;
+
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date timestamp = new Date();
 
     private T data;
 

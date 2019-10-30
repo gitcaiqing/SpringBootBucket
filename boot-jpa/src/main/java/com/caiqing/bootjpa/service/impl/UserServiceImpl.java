@@ -52,4 +52,14 @@ public class UserServiceImpl implements UserService {
     public List<String> listUserName() {
         return userEntityManagerDao.listUserName();
     }
+
+    @Override
+    public List<Map<String, Object>> getUserMap() {
+        return userEntityManagerDao.getUserMap();
+    }
+
+    @Override
+    public List<Map<String, Object>> joinUserMap() {
+        return userEntityManagerDao.joinUserMap();
+    }
 }

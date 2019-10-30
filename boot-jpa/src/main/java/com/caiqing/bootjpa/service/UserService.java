@@ -15,4 +15,8 @@ public interface UserService {
     List<User> listUserBean();
 
     List<String> listUserName();
+
+    List<Map<String, Object>> getUserMap();
+
+    List<Map<String, Object>> joinUserMap();
 }

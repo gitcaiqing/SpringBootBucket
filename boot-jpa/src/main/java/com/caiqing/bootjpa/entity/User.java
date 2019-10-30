@@ -1,5 +1,6 @@
 package com.caiqing.bootjpa.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -35,7 +36,6 @@ public class User{
     @Column(name = "birth_date")
 
     private Date birthDate;
-
 
     private Date createTime;
 

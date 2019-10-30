@@ -36,8 +36,19 @@ public class UserController {
 
     @RequestMapping("/listUserMap")
     public ResultModel<List<Map<String, Object>>> listUserMap(){
-        return new ResultModel<List<Map<String, Object>>>(userService.listUserMap());
+        return new ResultModel<>(userService.listUserMap());
     }
+
+    @RequestMapping("/getUserMap")
+    public ResultModel<List<Map<String, Object>>> getUserMap(){
+        return new ResultModel<>(userService.getUserMap());
+    }
+
+    @RequestMapping("/joinUserMap")
+    public ResultModel<List<Map<String, Object>>> joinUserMap(){
+        return new ResultModel<>(userService.joinUserMap());
+    }
+
     @RequestMapping("/listUserBean")
     public ResultModel<List<User>> listUserBean(){
         return new ResultModel<List<User>>(userService.listUserBean());

@@ -1,13 +1,35 @@
 server:
   port: 2002
+  context-path: /kafka_app
 
 spring:
   application:
-    name: kafka-producer
+    name: kafka_app
 
+  #kafka相关配置
   kafka:
+    #kafka服务地址
+    #bootstrap-servers: 10.68.8.91:9092
+    bootstrap-servers: localhost:9092
+    #生产者
     producer:
-      #kafka������
-      bootstrap-servers:
+      # 指定消息key和消息体的编解码方式
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 0
+      # 每次批量发送消息的数量
+      batch-size: 0
+      # 缓存大小
+      buffer-memory: 33554432
+    #消费者
+    consumer:
+      #指定消费者分组
+      group-id: user_log_group
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      #指定消息key和消息体的编解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+

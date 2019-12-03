@@ -21,7 +21,7 @@ public class UserEntityManagerDao {
     //@PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
+    //@Autowired
     private EntityManagerFactory entityManagerFactory;
 
     public List<Map<String,Object>> listUserMap(){

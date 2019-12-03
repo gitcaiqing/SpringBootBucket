@@ -21,7 +21,7 @@
         <module>boot-kafka</module>
     </modules>
 
-    <!--子模块直接引用-->
+    <!--子模块无需在pom再次引入 可直接引用到以下jar包-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

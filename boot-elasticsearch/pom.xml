@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.caiqing</groupId>
+        <artifactId>SpringBootBucket</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.caiqing</groupId>
+    <artifactId>boot-elasticsearch</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>boot-elasticsearch</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <!--
+        如果项目SpringBoot1.5.X以下的，那么elasticSearch.jar最高是2.4.4版本的，只有SpringBoot2.X+，elasticSearch.jar才是5.X+
+
+        如果你的SpringBoot是1.5.X以下，那你又想用elasticSearch.jar5.X+怎么办呢，那就不要用spring-boot-starter-data-elasticsearch，用原生的TransportClient实现即可。
+
+        这个相当于用原生的去使用elasticsearch,这里面并没有用到spring-boot-starter-data-elasticsearch相关jar包，因为我们公司的springBoot版本是1.5.9。
+
+        如果用spring-boot-starter-data-elasticsearch的话，那么elasticsearch版本最高只有2.4.4，这也太落后了，现在elasticsearch已经到6.3.2了，为了用更好的版本有两个方案：
+
+        1、提高springboot版本到2.X（不过不现实，船大难掉头），2、用原生的TransportClient实现。最终落地实现是通过TransportClient实现
+        -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>5.6.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>5.6.6</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>5.6.6</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

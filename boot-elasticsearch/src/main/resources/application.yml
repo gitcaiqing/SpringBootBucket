@@ -1,7 +1,7 @@
 server:
   port: 2006
-
-# esÅäÖÃ
+  context-path: /boot_es
+# esé…ç½®
 elasticsearch:
   clusterName: my-application
-  clusterNodes: loaclhost:9200
+  clusterNodes: 127.0.0.1:9300

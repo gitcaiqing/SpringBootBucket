@@ -1,6 +1,6 @@
 server:
+  context-path: /boot-elasticsearch
   port: 2006
-  context-path: /boot_es
 # es配置
 elasticsearch:
   clusterName: my-application

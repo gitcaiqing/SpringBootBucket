@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -37,7 +38,7 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("/es")
 public class EsController {
 
-    private static final String ES_INDEX = "book";
+    private static final String ES_INDEX = "book2";
 
     private static final String ES_TYPE = "novel";
 
@@ -54,15 +55,18 @@ public class EsController {
      * @date 2020/1/10 14:40
      */
     @GetMapping("/add/book/novel")
-    public ResponseEntity add(@RequestParam(required = false) String title, @RequestParam(required = false) String author,
-                              @RequestParam(required = false) Long wordCount){
+    public ResponseEntity add(@RequestParam(required = false) String title,
+                              @RequestParam(required = false) String author,
+                              @RequestParam(required = false) Long wordCount,
+                              @RequestParam(required = false) Long price){
         //return new ResponseEntity(1, HttpStatus.OK);
         XContentBuilder content;
         try {
             content = XContentFactory.jsonBuilder().startObject()
                     .field("title", title)
                     .field("author", author)
-                    .field("word_count", wordCount)
+                    .field("price", price)
+                    .field("wordCount", wordCount)
                     .endObject();
         } catch (IOException e) {
             e.printStackTrace();
@@ -143,7 +147,9 @@ public class EsController {
     }
 
     /**
-     * 复合查询   价格小于price的novel
+     * 复合查询
+     * from to 大于等于 并 小于等于
+     * gt lt 大于 并 小于
      * @param author
      * @param title
      * @param price
@@ -163,9 +169,9 @@ public class EsController {
             boolQueryBuilder.must(QueryBuilders.matchQuery("title", title));
         }
 
-        RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("price").from(0);
+        RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("price").gt(0);
         if(price != null){
-            rangeQueryBuilder.to(price);
+            rangeQueryBuilder.lt(price);
         }
         boolQueryBuilder.filter(rangeQueryBuilder);
 
@@ -181,5 +187,21 @@ public class EsController {
         }
         return new ResponseEntity(result, HttpStatus.OK);
 
+    }
+
+    @GetMapping("/termQuery/book/novel")
+    public ResponseEntity termQuery(@RequestParam(required = true) String title){
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+        List<String> titles = Arrays.asList("aa","bb");
+        boolQueryBuilder.must(
+                QueryBuilders.termQuery("title", titles)
+        );
+        SearchResponse response = this.transportClient.prepareSearch(ES_INDEX).setTypes(ES_TYPE)
+                .setQuery(boolQueryBuilder).get();
+        List<Map<String, Object>> result = new ArrayList<>();
+        for(SearchHit searchHit : response.getHits()){
+            result.add(searchHit.getSource());
+        }
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 }

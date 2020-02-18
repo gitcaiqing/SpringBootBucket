@@ -12,7 +12,6 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.SearchHit;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 /**
  * @Description TODO
@@ -47,8 +45,9 @@ public class EsController {
 
     /**
      * 新增
-     * @param title 标题
-     * @param author 作者
+     *
+     * @param title     标题
+     * @param author    作者
      * @param wordCount 字数
      * @return org.springframework.http.ResponseEntity
      * @author CQ
@@ -58,7 +57,7 @@ public class EsController {
     public ResponseEntity add(@RequestParam(required = false) String title,
                               @RequestParam(required = false) String author,
                               @RequestParam(required = false) Long wordCount,
-                              @RequestParam(required = false) Long price){
+                              @RequestParam(required = false) Long price) {
         //return new ResponseEntity(1, HttpStatus.OK);
         XContentBuilder content;
         try {
@@ -79,31 +78,33 @@ public class EsController {
 
     /**
      * 根据ID删除
+     *
      * @param id
      * @return org.springframework.http.ResponseEntity
      * @author CQ
      * @date 2020/1/10 14:40
      */
     @DeleteMapping("/delete/book/novel")
-    public ResponseEntity delete(@RequestParam String id){
+    public ResponseEntity delete(@RequestParam String id) {
         DeleteResponse result = this.transportClient.prepareDelete(ES_INDEX, ES_TYPE, id).get();
         return new ResponseEntity(result.getId(), HttpStatus.OK);
     }
 
     /**
      * 根据ID查询
+     *
      * @param id
      * @return org.springframework.http.ResponseEntity
      * @author CQ
      * @date 2020/1/10 14:46
      */
     @GetMapping("/get/book/novel")
-    public ResponseEntity get(@RequestParam String id){
-        if(id.isEmpty()){
+    public ResponseEntity get(@RequestParam String id) {
+        if (id.isEmpty()) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         GetResponse result = this.transportClient.prepareGet(ES_INDEX, ES_TYPE, id).get();
-        if(!result.isExists()){
+        if (!result.isExists()) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity(result.getSource(), HttpStatus.OK);
@@ -111,6 +112,7 @@ public class EsController {
 
     /**
      * 根据ID更新
+     *
      * @param id
      * @param title
      * @param author
@@ -121,17 +123,17 @@ public class EsController {
     @PutMapping("/put/book/novel")
     public ResponseEntity update(@RequestParam String id, @RequestParam(required = false) String title,
                                  @RequestParam(required = false) String author,
-                                 @RequestParam(required = false) Long price){
+                                 @RequestParam(required = false) Long price) {
 
         try {
             XContentBuilder builder = XContentFactory.jsonBuilder().startObject();
-            if(StringUtils.hasText(title)){
+            if (StringUtils.hasText(title)) {
                 builder.field("title", title);
             }
-            if(StringUtils.hasText(author)){
-                builder.field("author",author);
+            if (StringUtils.hasText(author)) {
+                builder.field("author", author);
             }
-            if(price != null){
+            if (price != null) {
                 builder.field("price", price);
             }
             builder.endObject();
@@ -150,6 +152,7 @@ public class EsController {
      * 复合查询
      * from to 大于等于 并 小于等于
      * gt lt 大于 并 小于
+     *
      * @param author
      * @param title
      * @param price
@@ -160,17 +163,17 @@ public class EsController {
     @GetMapping("/query/book/novel")
     public ResponseEntity query(@RequestParam(required = false) String author,
                                 @RequestParam(required = false) String title,
-                                @RequestParam(required = false) Long price){
+                                @RequestParam(required = false) Long price) {
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
-        if(!StringUtils.isEmpty(author)){
+        if (!StringUtils.isEmpty(author)) {
             boolQueryBuilder.must(QueryBuilders.matchQuery("author", author));
         }
-        if(!StringUtils.isEmpty(title)){
+        if (!StringUtils.isEmpty(title)) {
             boolQueryBuilder.must(QueryBuilders.matchQuery("title", title));
         }
 
         RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("price").gt(0);
-        if(price != null){
+        if (price != null) {
             rangeQueryBuilder.lt(price);
         }
         boolQueryBuilder.filter(rangeQueryBuilder);
@@ -182,7 +185,7 @@ public class EsController {
                 .setSize(10);
         SearchResponse response = searchRequestBuilder.get();
         List<Map<String, Object>> result = new ArrayList<>();
-        for(SearchHit searchHit : response.getHits()){
+        for (SearchHit searchHit : response.getHits()) {
             result.add(searchHit.getSource());
         }
         return new ResponseEntity(result, HttpStatus.OK);
@@ -190,16 +193,16 @@ public class EsController {
     }
 
     @GetMapping("/termQuery/book/novel")
-    public ResponseEntity termQuery(@RequestParam(required = true) String title){
+    public ResponseEntity termQuery(@RequestParam(required = true) String title) {
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
-        List<String> titles = Arrays.asList("aa","bb");
+        List<String> titles = Arrays.asList("aa", "bb");
         boolQueryBuilder.must(
                 QueryBuilders.termQuery("title", titles)
         );
         SearchResponse response = this.transportClient.prepareSearch(ES_INDEX).setTypes(ES_TYPE)
                 .setQuery(boolQueryBuilder).get();
         List<Map<String, Object>> result = new ArrayList<>();
-        for(SearchHit searchHit : response.getHits()){
+        for (SearchHit searchHit : response.getHits()) {
             result.add(searchHit.getSource());
         }
         return new ResponseEntity(result, HttpStatus.OK);

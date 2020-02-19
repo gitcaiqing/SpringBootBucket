@@ -55,10 +55,13 @@ public class UserEntityManagerDao {
     }
 
     public List<User> listUser(){
+//        String sql = "SELECT U.* FROM tb_user U";
+//        return entityManager.createNativeQuery(sql)
+//                .unwrap(org.hibernate.Query.class)
+//                .setResultTransformer(Transformers.aliasToBean(User.class)).list();
+
         String sql = "SELECT U.* FROM tb_user U";
-        return entityManager.createNativeQuery(sql)
-                .unwrap(org.hibernate.Query.class)
-                .setResultTransformer(Transformers.aliasToBean(User.class)).list();
+        return entityManager.createNativeQuery(sql, User.class).getResultList();
 
     }
 

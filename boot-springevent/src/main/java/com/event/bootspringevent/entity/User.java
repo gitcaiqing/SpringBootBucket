@@ -1,4 +1,4 @@
-package com.caiqing.bootjpa.entity;
+package com.event.bootspringevent.entity;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_user")
 @Data
-public class User{
+public class User {
 
     @Id
     @GeneratedValue
@@ -63,4 +63,5 @@ public class User{
 
         return name + ":"+age;
     }
+
 }

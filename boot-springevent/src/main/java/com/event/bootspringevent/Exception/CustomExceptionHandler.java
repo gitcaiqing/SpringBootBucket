@@ -20,7 +20,8 @@ public class CustomExceptionHandler {
     @ExceptionHandler(value = BusinessException.class)
     @ResponseBody
     public ResultModel handleBusinessException(BusinessException e) {
-        log.error(e.getMessage(), e);
+        //log.error(e.getMessage(), e);
+        log.error(e.getMessage());
         return new ResultModel(e.getCode(), e.getMessage());
     }
 }

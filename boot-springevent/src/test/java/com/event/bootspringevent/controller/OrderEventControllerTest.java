@@ -42,9 +42,9 @@ public class OrderEventControllerTest {
     }
 
     @Test
-    public void createOrderWithEvent() throws Exception {
+    public void createOrderWithEventSync() throws Exception {
 
-        String uri = "/event/order/createOrderWithEvent";
+        String uri = "/event/order/createOrderWithEventSync";
 
         String requestJson = JSONObject.toJSONString("");
 
@@ -53,6 +53,50 @@ public class OrderEventControllerTest {
                         .contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("createOrderWithEvent测试-请求结果：{}",mockMvcResult);
+        log.info("createOrderWithEventSync-请求结果：{}",mockMvcResult);
+    }
+
+    /**
+     * 异步
+     * @param
+     * @return void
+     * @author CQ
+     * @date 2020/2/21 16:47
+     */
+    @Test
+    public void createOrderWithEventAsync() throws Exception {
+
+        String uri = "/event/order/createOrderWithEventAsync";
+
+        String requestJson = JSONObject.toJSONString("");
+
+        String mockMvcResult = mockMvc
+                .perform(MockMvcRequestBuilders.post(uri)
+                        .contentType(MediaType.APPLICATION_JSON).content(requestJson))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        log.info("createOrderWithEventAsync-请求结果：{}",mockMvcResult);
+    }
+
+    /**
+     * 泛型
+     * @param
+     * @return void
+     * @author CQ
+     * @date 2020/2/21 16:47
+     */
+    @Test
+    public void createOrderWithGenericEvent() throws Exception {
+
+        String uri = "/event/order/createOrderWithGenericEvent";
+
+        String requestJson = JSONObject.toJSONString("");
+
+        String mockMvcResult = mockMvc
+                .perform(MockMvcRequestBuilders.post(uri)
+                        .contentType(MediaType.APPLICATION_JSON).content(requestJson))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        log.info("createOrderWithEventAsync-请求结果：{}",mockMvcResult);
     }
 }

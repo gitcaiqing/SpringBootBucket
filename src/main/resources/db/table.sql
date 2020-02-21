@@ -42,6 +42,6 @@ CREATE TABLE `tb_order` (
   `user_id` varchar(32)  DEFAULT NULL COMMENT '用户uuid',
   `user_name` varchar(20)  DEFAULT NULL COMMENT '用户名',
   `mobile` varchar(15) DEFAULT NULL COMMENT '用户手机',
-  `email` varchar(32) DEFAULT NULL COMMENT '用户邮件'
+  `email` varchar(32) DEFAULT NULL COMMENT '用户邮件',
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

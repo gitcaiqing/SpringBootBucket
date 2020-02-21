@@ -10,5 +10,8 @@ public interface OrderService {
     Order createOrder();
 
     //下单后通过事件驱动进行业务解耦
-    Order createOrderWithEvent();
+    Order createOrderWithEvent(Boolean isAsync);
+
+    //下单后通过事件驱动进行业务解耦
+    Order createOrderWithGenericEvent(Boolean isAsync);
 }

@@ -4,25 +4,37 @@ import com.event.bootspringevent.Exception.BusinessException;
 import com.event.bootspringevent.entity.Order;
 import com.event.bootspringevent.entity.User;
 import com.event.bootspringevent.event.OrderCreateEvent;
+import com.event.bootspringevent.event.OrderCreateEventAsync;
 import com.event.bootspringevent.service.ShortMessageSendService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**
- * 订单创建发送短信监听器
- */
-@Slf4j
+ * @Description 基于注解事件监听
+ * @Author CQ
+ * @Date 2020/2/21 15:27
+ **/
 @Component
-public class OrderCreateSendShortMessageListener implements ApplicationListener<OrderCreateEvent> {
+@Slf4j
+public class OrderCreateSendShortMessageAnnotationListener {
 
     @Autowired
     private ShortMessageSendService shortMessageSendService;
 
-    @Override
-    public void onApplicationEvent(OrderCreateEvent orderCreateEvent) {
-        log.info("①①①实现ApplicationListener接口监听订单创建①①①");
+    /**
+     * 1.启动类添加@EnableAsync注解开启支持异步
+     * 2.监听方法上添加@Async注解，异步触发事件监听
+     * @param orderCreateEvent
+     * @return void
+     * @author CQ
+     */
+    @Async
+    @EventListener
+    public void orderCreateEvent(OrderCreateEventAsync orderCreateEvent){
+        log.info("②②②注解驱动@EventListener监听订单创建②②②");
         if(orderCreateEvent == null){
             throw new BusinessException("订单创建发送短信事件监听异常");
         }

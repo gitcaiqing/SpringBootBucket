@@ -192,6 +192,13 @@ public class EsController {
 
     }
 
+    /**
+     * 分组查询
+     * @param title
+     * @return org.springframework.http.ResponseEntity
+     * @author CQ
+     * @date 2020/2/24 16:07
+     */
     @GetMapping("/termQuery/book/novel")
     public ResponseEntity termQuery(@RequestParam(required = true) String title) {
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();

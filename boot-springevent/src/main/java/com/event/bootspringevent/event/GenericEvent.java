@@ -15,7 +15,7 @@ public class GenericEvent<T> {
     //数据
     private T data;
 
-    //事件类型 0 订单创建 1 登陆成功
+    //事件类型 0 订单创建 1 登陆成功 2 生成待发货信息
     private Integer type;
 
     public GenericEvent(T data, Integer type){

@@ -9,6 +9,7 @@ import com.event.bootspringevent.event.OrderCreateEventAsync;
 import com.event.bootspringevent.event.OrderCreateGenericEvent;
 import com.event.bootspringevent.service.OrderService;
 import com.event.bootspringevent.util.UUIDUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -105,6 +107,12 @@ public class OrderServiceImpl implements OrderService {
             throw new BusinessException("下单异常");
         }
         return order;
+    }
+
+    @Override
+    public void createWaitSendGoods(Order order) {
+        // TODO
+        log.info("***************{}生成待发货记录", order.getOrderNo());
     }
 
     private void orderCreateSendShortMessage(Boolean isAsync, Order order){

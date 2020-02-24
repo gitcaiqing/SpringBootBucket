@@ -14,4 +14,7 @@ public interface OrderService {
 
     //下单后通过事件驱动进行业务解耦
     Order createOrderWithGenericEvent(Boolean isAsync);
+
+    //生成待发货记录
+    void createWaitSendGoods(Order order);
 }

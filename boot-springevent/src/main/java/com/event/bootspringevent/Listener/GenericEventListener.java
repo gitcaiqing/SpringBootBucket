@@ -4,11 +4,12 @@ import com.event.bootspringevent.Exception.BusinessException;
 import com.event.bootspringevent.entity.Order;
 import com.event.bootspringevent.entity.User;
 import com.event.bootspringevent.event.GenericEvent;
-import com.event.bootspringevent.event.OrderCreateEventAsync;
+import com.event.bootspringevent.event.OrderCreateEvent;
+import com.event.bootspringevent.service.OrderService;
 import com.event.bootspringevent.service.ShortMessageSendService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Condition;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -20,10 +21,16 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @Slf4j
-public class SendShortMessageGenericListener {
+public class GenericEventListener {
 
     @Autowired
     private ShortMessageSendService shortMessageSendService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private ApplicationEventPublisher publisher;
 
    /**
     * 订单创建
@@ -36,7 +43,7 @@ public class SendShortMessageGenericListener {
     @Async
     @EventListener(condition = "#genericEvent.type == 0")
     public void orderCreateEventListener(GenericEvent<Order> genericEvent){
-        log.info("③③③注解驱动@EventListener监听泛型事件GenericEvent<Order> genericEvent.type = 0 订单创建成功后短信通知③③③");
+        log.info("▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲注解驱动@EventListener监听泛型事件GenericEvent<Order> genericEvent.type = 0 订单创建成功后短信通知");
         if(genericEvent == null){
             throw new BusinessException("订单创建发送短信事件监听异常");
         }
@@ -50,6 +57,7 @@ public class SendShortMessageGenericListener {
 
             //user = null;
             shortMessageSendService.sendShortMessage(user);
+
         } catch (Exception e) {
             throw new BusinessException("订单创建发送短信失败："+e.getMessage());
         }
@@ -66,7 +74,7 @@ public class SendShortMessageGenericListener {
     @Async
     @EventListener(condition = "#genericEvent.type == 1")
     public void loginSuccessEventListener(GenericEvent<User> genericEvent){
-        log.info("③③③注解驱动@EventListener监听泛型事件GenericEvent<User> genericEvent.type = 1 登陆成功后短信通知③③③");
+        log.info("▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲注解驱动@EventListener监听泛型事件GenericEvent<User> genericEvent.type = 1 登陆成功后短信通知");
         if(genericEvent == null){
             throw new BusinessException("订单创建发送短信事件监听异常");
         }
@@ -80,4 +88,5 @@ public class SendShortMessageGenericListener {
             throw new BusinessException("登陆成功发送短信失败："+e.getMessage());
         }
     }
+
 }

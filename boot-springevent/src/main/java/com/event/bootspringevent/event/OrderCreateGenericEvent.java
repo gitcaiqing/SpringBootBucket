@@ -3,7 +3,7 @@ package com.event.bootspringevent.event;
 import com.event.bootspringevent.entity.Order;
 
 /**
- * @Description TODO
+ * @Description 泛型事件具体实现-订单创建
  * @Author CQ
  * @Date 2020/2/21 16:29
  **/

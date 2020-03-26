@@ -4,6 +4,7 @@ import com.event.bootspringevent.Exception.BusinessException;
 import com.event.bootspringevent.entity.Order;
 import com.event.bootspringevent.entity.User;
 import com.event.bootspringevent.event.GenericEvent;
+import com.event.bootspringevent.event.GenericEventResolvableType;
 import com.event.bootspringevent.event.OrderCreateEvent;
 import com.event.bootspringevent.service.OrderService;
 import com.event.bootspringevent.service.ShortMessageSendService;
@@ -75,6 +76,32 @@ public class GenericEventListener {
     @EventListener(condition = "#genericEvent.type == 1")
     public void loginSuccessEventListener(GenericEvent<User> genericEvent){
         log.info("▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲注解驱动@EventListener监听泛型事件GenericEvent<User> genericEvent.type = 1 登陆成功后短信通知");
+        if(genericEvent == null){
+            throw new BusinessException("订单创建发送短信事件监听异常");
+        }
+        try {
+            User user = genericEvent.getData();
+            log.info("登陆成功发送短信发布事件user:{}", user);
+
+            //user = null;
+            shortMessageSendService.sendShortMessage(user);
+        } catch (Exception e) {
+            throw new BusinessException("登陆成功发送短信失败："+e.getMessage());
+        }
+    }
+
+    /**
+     * 登陆成功
+     * 1.启动类添加@EnableAsync注解开启支持异步
+     * 2.监听方法上添加@Async注解，异步触发事件监听
+     * @param genericEvent
+     * @return void
+     * @author CQ
+     */
+    @Async
+    @EventListener(condition = "#genericEvent.type == 1")
+    public void loginSuccessEventListener(GenericEventResolvableType<User> genericEvent){
+        log.info("ResolvableType▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲注解驱动@EventListener监听泛型事件GenericEvent<User> genericEvent.type = 1 登陆成功后短信通知");
         if(genericEvent == null){
             throw new BusinessException("订单创建发送短信事件监听异常");
         }

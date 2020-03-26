@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyEventController {
 
     @Autowired
-    private ApplicationContext context;
-
-    @Autowired
     private ApplicationEventPublisher publisher;
 
     //子

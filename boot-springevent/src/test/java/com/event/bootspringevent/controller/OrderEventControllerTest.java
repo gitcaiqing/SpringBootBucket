@@ -41,6 +41,13 @@ public class OrderEventControllerTest {
         log.info("createOrder测试-请求结果：{}",mockMvcResult);
     }
 
+    /**
+     * 同步
+     * @param
+     * @return void
+     * @author CQ
+     * @date 2020/2/21 16:47
+     */
     @Test
     public void createOrderWithEventSync() throws Exception {
 

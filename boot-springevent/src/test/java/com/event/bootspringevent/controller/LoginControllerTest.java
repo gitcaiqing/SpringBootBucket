@@ -37,6 +37,6 @@ public class LoginControllerTest {
                         .contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("loginSuccessWithGenericEvent-请求结果：{}",mockMvcResult);
+        log.info("loginSuccessWithGenericEvent-请求结果：{}", mockMvcResult);
     }
 }

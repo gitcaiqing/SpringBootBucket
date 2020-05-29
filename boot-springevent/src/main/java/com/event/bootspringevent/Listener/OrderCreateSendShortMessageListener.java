@@ -23,7 +23,7 @@ public class OrderCreateSendShortMessageListener implements ApplicationListener<
     @Override
     public void onApplicationEvent(OrderCreateEvent orderCreateEvent) {
         log.info("①①①实现ApplicationListener接口监听订单创建①①①");
-        if(orderCreateEvent == null){
+        if (orderCreateEvent == null) {
             throw new BusinessException("订单创建发送短信事件监听异常");
         }
         try {
@@ -36,10 +36,10 @@ public class OrderCreateSendShortMessageListener implements ApplicationListener<
             user.setName(order.getUserName());
             user.setMobile(order.getMobile());
 
-            user = null;
+            //user = null;
             shortMessageSendService.sendShortMessage(user);
         } catch (Exception e) {
-            throw new BusinessException("订单创建发送短信失败："+e.getMessage());
+            throw new BusinessException("订单创建发送短信失败：" + e.getMessage());
         }
     }
 }

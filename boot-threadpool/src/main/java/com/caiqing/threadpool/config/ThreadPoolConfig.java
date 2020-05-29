@@ -44,7 +44,7 @@ public class ThreadPoolConfig {
      * DiscardPolicy 忽视，什么都不会发生
      * DiscardOldestPolicy 从队列中踢出最先进入队列（最后一个执行）的任务
      * 实现RejectedExecutionHandler接口，可自定义处理器
-     *
+     * <p>
      * 默认值
      * corePoolSize=1
      * queueCapacity=Integer.MAX_VALUE
@@ -59,7 +59,7 @@ public class ThreadPoolConfig {
      * @date 2019/12/3 18:28
      */
     @Bean
-    public TaskExecutor taskExecutor(){
+    public TaskExecutor taskExecutor() {
         log.info("executor start ->>>");
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         // 设置核心线程数
@@ -81,7 +81,7 @@ public class ThreadPoolConfig {
         executor.setWaitForTasksToCompleteOnShutdown(true);
         // 执行初始化
         executor.initialize();
-        log.info("executor init ->>>:{}",executor);
+        log.info("executor init ->>>:{}", executor);
         return executor;
     }
 }

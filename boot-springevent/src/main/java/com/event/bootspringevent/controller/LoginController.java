@@ -20,13 +20,14 @@ public class LoginController {
 
     /**
      * 成功登陆-事件发布-事件监听（泛型事件）
+     *
      * @param
      * @return com.event.bootspringevent.util.ResultModel
      * @author CQ
      * @date 2020/2/21 15:56
      */
     @PostMapping("/loginSuccessWithGenericEvent")
-    public ResultModel loginSuccessWithGenericEvent(){
+    public ResultModel loginSuccessWithGenericEvent() {
         User user = loginService.loginSuccessWithGenericEvent(true);
         return new ResultModel(user);
     }

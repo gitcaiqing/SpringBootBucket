@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Transactional
     @Override
-    public Order createOrder(){
+    public Order createOrder() {
 
         User user = new User();
         user.setUserId(UUIDUtils.getUUID());
@@ -72,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Transactional
     @Override
-    public Order createOrderWithEvent(Boolean isSync){
+    public Order createOrderWithEvent(Boolean isSync) {
         User user = new User();
         Order order = new Order();
         buildData(user, order);
@@ -93,7 +93,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Transactional
     @Override
-    public Order createOrderWithGenericEvent(Boolean isSync){
+    public Order createOrderWithGenericEvent(Boolean isSync) {
         User user = new User();
         Order order = new Order();
         buildData(user, order);
@@ -115,17 +115,17 @@ public class OrderServiceImpl implements OrderService {
         log.info("***************{}生成待发货记录", order.getOrderNo());
     }
 
-    private void orderCreateSendShortMessage(Boolean isAsync, Order order){
-        if(isAsync){
+    private void orderCreateSendShortMessage(Boolean isAsync, Order order) {
+        if (isAsync) {
             //异步
             publisher.publishEvent(new OrderCreateEventAsync(this, order));
-        }else{
+        } else {
             //同步
             publisher.publishEvent(new OrderCreateEvent(this, order));
         }
     }
 
-    private void buildData(User user, Order order){
+    private void buildData(User user, Order order) {
         user.setUserId(UUIDUtils.getUUID());
         user.setName("CQ-02");
         user.setMobile("18779681526");

@@ -26,37 +26,37 @@ public class ExcelExportUtil {
     public static final String FIRE_FOX = "firefox";
 
     /**
-     * @param sheetName sheet页名称
-     * @param titleList 列名
+     * @param sheetName     sheet页名称
+     * @param titleList     列名
      * @param titleCodeList 列名对应的code
-     * @param parpamtsList 可选择参数列(需与列名一比一)
+     * @param parpamtsList  可选择参数列(需与列名一比一)
      */
     public static HSSFWorkbook createExcel(String sheetName, List<String> titleList, List<String> titleCodeList, List<List<String>> parpamtsList) {
 
         HSSFWorkbook wb = new HSSFWorkbook();
-        HSSFSheet sheet = setSheetBaseInfoExcel(sheetName,36,30,wb);
+        HSSFSheet sheet = setSheetBaseInfoExcel(sheetName, 36, 30, wb);
 
         CellStyle bodyStyle = getDefaultBodyStyle(sheet.getWorkbook());
         CellStyle dateStyle = getDefaultDatetimeStyle(sheet.getWorkbook());
 
-        for(int i=0; i<titleList.size(); i++){
+        for (int i = 0; i < titleList.size(); i++) {
             Row row = sheet.createRow(i);
-            setBodyCellValue(row, 0, titleList.get(i),bodyStyle, dateStyle);
+            setBodyCellValue(row, 0, titleList.get(i), bodyStyle, dateStyle);
         }
 
         int rowIndex = 1;
         int colIndex;
 
-        for(int j=0; j<titleCodeList.size(); j++){
+        for (int j = 0; j < titleCodeList.size(); j++) {
             Row row = sheet.createRow(rowIndex);
             colIndex = 0;
-            setBodyCellValue(row, colIndex++, titleCodeList.get(j),bodyStyle, dateStyle);
+            setBodyCellValue(row, colIndex++, titleCodeList.get(j), bodyStyle, dateStyle);
         }
 
         //设置默认下拉内容
-        if(parpamtsList!=null && parpamtsList.size()>0) {
-            for(int i=0;i<parpamtsList.size();i++) {
-                if(parpamtsList.get(i)==null || parpamtsList.get(i).size()<1) {
+        if (parpamtsList != null && parpamtsList.size() > 0) {
+            for (int i = 0; i < parpamtsList.size(); i++) {
+                if (parpamtsList.get(i) == null || parpamtsList.get(i).size() < 1) {
                     continue;
                 }
                 //设置下拉控制的范围
@@ -74,7 +74,7 @@ public class ExcelExportUtil {
         return wb;
     }
 
-    public static void download(String title, byte[] output, HttpServletRequest request, HttpServletResponse response){
+    public static void download(String title, byte[] output, HttpServletRequest request, HttpServletResponse response) {
         BufferedOutputStream bos = null;
         try {
             // firefox浏览器
@@ -91,8 +91,8 @@ public class ExcelExportUtil {
             bos.write(output);
             bos.close();
         } catch (IOException e) {
-        }finally {
-            if(null != bos){
+        } finally {
+            if (null != bos) {
                 try {
                     bos.close();
                 } catch (IOException e) {
@@ -101,8 +101,10 @@ public class ExcelExportUtil {
         }
     }
 
-    /**设计excel定义列数、列宽和标头信息*/
-    private static HSSFSheet setSheetBaseInfoExcel(String excelName,int columWith,int rowHight,HSSFWorkbook wb){
+    /**
+     * 设计excel定义列数、列宽和标头信息
+     */
+    private static HSSFSheet setSheetBaseInfoExcel(String excelName, int columWith, int rowHight, HSSFWorkbook wb) {
         HSSFSheet sheet = wb.createSheet(excelName);
         sheet.setDefaultColumnWidth(columWith);
         sheet.setDefaultRowHeightInPoints(rowHight);
@@ -121,7 +123,7 @@ public class ExcelExportUtil {
         // 设置字体
         HSSFFont font = workbook.createFont();
         //设置字体大小
-        font.setFontHeightInPoints((short)16);
+        font.setFontHeightInPoints((short) 16);
         //字体加粗
 //        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
         //设置字体名字

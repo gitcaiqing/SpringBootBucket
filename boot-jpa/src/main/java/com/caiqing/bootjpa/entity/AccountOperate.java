@@ -11,12 +11,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_account_operate")
 @Data
-public class AccountOperate{
+public class AccountOperate {
 
 
     @Id
     @GeneratedValue
-    private Long id ;
+    private Long id;
 
     /**
      * 账户操作uuid

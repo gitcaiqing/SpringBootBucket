@@ -33,19 +33,20 @@ public class GenericEventListener {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-   /**
-    * 订单创建
-    * 1.启动类添加@EnableAsync注解开启支持异步
-    * 2.监听方法上添加@Async注解，异步触发事件监听
-    * @param genericEvent
-    * @return void
-    * @author CQ
-    */
+    /**
+     * 订单创建
+     * 1.启动类添加@EnableAsync注解开启支持异步
+     * 2.监听方法上添加@Async注解，异步触发事件监听
+     *
+     * @param genericEvent
+     * @return void
+     * @author CQ
+     */
     @Async
     @EventListener(condition = "#genericEvent.type == 0")
-    public void orderCreateEventListener(GenericEvent<Order> genericEvent){
+    public void orderCreateEventListener(GenericEvent<Order> genericEvent) {
         log.info("▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲注解驱动@EventListener监听泛型事件GenericEvent<Order> genericEvent.type = 0 订单创建成功后短信通知");
-        if(genericEvent == null){
+        if (genericEvent == null) {
             throw new BusinessException("订单创建发送短信事件监听异常");
         }
         try {
@@ -60,7 +61,7 @@ public class GenericEventListener {
             shortMessageSendService.sendShortMessage(user);
 
         } catch (Exception e) {
-            throw new BusinessException("订单创建发送短信失败："+e.getMessage());
+            throw new BusinessException("订单创建发送短信失败：" + e.getMessage());
         }
     }
 
@@ -68,15 +69,16 @@ public class GenericEventListener {
      * 登陆成功
      * 1.启动类添加@EnableAsync注解开启支持异步
      * 2.监听方法上添加@Async注解，异步触发事件监听
+     *
      * @param genericEvent
      * @return void
      * @author CQ
      */
     @Async
     @EventListener(condition = "#genericEvent.type == 1")
-    public void loginSuccessEventListener(GenericEvent<User> genericEvent){
+    public void loginSuccessEventListener(GenericEvent<User> genericEvent) {
         log.info("▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲注解驱动@EventListener监听泛型事件GenericEvent<User> genericEvent.type = 1 登陆成功后短信通知");
-        if(genericEvent == null){
+        if (genericEvent == null) {
             throw new BusinessException("订单创建发送短信事件监听异常");
         }
         try {
@@ -86,7 +88,7 @@ public class GenericEventListener {
             //user = null;
             shortMessageSendService.sendShortMessage(user);
         } catch (Exception e) {
-            throw new BusinessException("登陆成功发送短信失败："+e.getMessage());
+            throw new BusinessException("登陆成功发送短信失败：" + e.getMessage());
         }
     }
 
@@ -94,15 +96,16 @@ public class GenericEventListener {
      * 登陆成功
      * 1.启动类添加@EnableAsync注解开启支持异步
      * 2.监听方法上添加@Async注解，异步触发事件监听
+     *
      * @param genericEvent
      * @return void
      * @author CQ
      */
     @Async
     @EventListener(condition = "#genericEvent.type == 1")
-    public void loginSuccessEventListener(GenericEventResolvableType<User> genericEvent){
+    public void loginSuccessEventListener(GenericEventResolvableType<User> genericEvent) {
         log.info("ResolvableType▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲注解驱动@EventListener监听泛型事件GenericEvent<User> genericEvent.type = 1 登陆成功后短信通知");
-        if(genericEvent == null){
+        if (genericEvent == null) {
             throw new BusinessException("订单创建发送短信事件监听异常");
         }
         try {
@@ -112,7 +115,7 @@ public class GenericEventListener {
             //user = null;
             shortMessageSendService.sendShortMessage(user);
         } catch (Exception e) {
-            throw new BusinessException("登陆成功发送短信失败："+e.getMessage());
+            throw new BusinessException("登陆成功发送短信失败：" + e.getMessage());
         }
     }
 

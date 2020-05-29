@@ -24,14 +24,15 @@ public class ThreadController {
 
     /**
      * 异步
+     *
      * @param
      * @return java.lang.Object
      * @author CQ
      * @date 2019/12/3 16:45
      */
     @GetMapping("/asyncTest")
-    public Object asyncTest(){
-        for (int i = 0; i < 100; i++){
+    public Object asyncTest() {
+        for (int i = 0; i < 100; i++) {
             threadPoolService.executeAsync(i);
         }
         return "success";
@@ -39,14 +40,15 @@ public class ThreadController {
 
     /**
      * 异步
+     *
      * @param
      * @return java.lang.Object
      * @author CQ
      * @date 2019/12/3 16:45
      */
     @GetMapping("/syncTest")
-    public Object syncTest(){
-        for (int i = 0; i < 100; i++){
+    public Object syncTest() {
+        for (int i = 0; i < 100; i++) {
             threadPoolService.executeSync(i);
         }
         return "success";

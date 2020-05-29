@@ -27,15 +27,16 @@ public class OrderCreateSendShortMessageAnnotationListener {
     /**
      * 1.启动类添加@EnableAsync注解开启支持异步
      * 2.监听方法上添加@Async注解，异步触发事件监听
+     *
      * @param orderCreateEvent
      * @return void
      * @author CQ
      */
     @Async
     @EventListener
-    public void orderCreateEvent(OrderCreateEventAsync orderCreateEvent){
+    public void orderCreateEvent(OrderCreateEventAsync orderCreateEvent) {
         log.info("②②②注解驱动@EventListener监听订单创建②②②");
-        if(orderCreateEvent == null){
+        if (orderCreateEvent == null) {
             throw new BusinessException("订单创建发送短信事件监听异常");
         }
         try {
@@ -51,7 +52,7 @@ public class OrderCreateSendShortMessageAnnotationListener {
             user = null;
             shortMessageSendService.sendShortMessage(user);
         } catch (Exception e) {
-            throw new BusinessException("订单创建发送短信失败："+e.getMessage());
+            throw new BusinessException("订单创建发送短信失败：" + e.getMessage());
         }
     }
 }

@@ -1,5 +1,3 @@
-
-
-  server:
-    context-path: /boot-websocket
-    port: 2001
+server:
+  context-path: /boot-websocket
+  port: 2001

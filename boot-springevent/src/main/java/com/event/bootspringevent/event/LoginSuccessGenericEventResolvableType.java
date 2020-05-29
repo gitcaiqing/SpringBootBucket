@@ -7,9 +7,9 @@ import com.event.bootspringevent.entity.User;
  * @Author CQ
  * @Date 2020/2/21 16:29
  **/
-public class LoginSuccessGenericEventResolvableType extends GenericEventResolvableType<User>{
+public class LoginSuccessGenericEventResolvableType extends GenericEventResolvableType<User> {
 
-    public LoginSuccessGenericEventResolvableType(User user, Integer type){
+    public LoginSuccessGenericEventResolvableType(User user, Integer type) {
         super(user, type);
     }
 }

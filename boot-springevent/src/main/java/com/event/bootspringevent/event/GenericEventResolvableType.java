@@ -17,7 +17,7 @@ public class GenericEventResolvableType<T> implements ResolvableTypeProvider {
     //事件类型 0 订单创建 1 登陆成功 2 生成待发货信息
     private Integer type;
 
-    public GenericEventResolvableType(T data, Integer type){
+    public GenericEventResolvableType(T data, Integer type) {
         this.data = data;
         this.type = type;
     }

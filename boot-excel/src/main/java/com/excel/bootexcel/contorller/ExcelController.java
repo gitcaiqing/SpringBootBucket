@@ -21,7 +21,7 @@ public class ExcelController {
     private ExcelService excelService;
 
     @RequestMapping("/exportContainsCheck")
-    public String exportContainsCheck(HttpServletRequest request, HttpServletResponse response){
+    public String exportContainsCheck(HttpServletRequest request, HttpServletResponse response) {
         excelService.exportContainsCheck(request, response);
         return "导出成功";
     }

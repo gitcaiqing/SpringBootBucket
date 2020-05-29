@@ -10,11 +10,11 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_user")
 @Data
-public class User{
+public class User {
 
     @Id
     @GeneratedValue
-    private Long id ;
+    private Long id;
 
     @Column(name = "user_id", length = 32)
     private String userId;
@@ -23,7 +23,7 @@ public class User{
 
     @Length(max = 100, message = "用户名最多100字")
     @NotBlank(message = "用户名不能为空")
-    private String name ;
+    private String name;
 
     private Long age;
 
@@ -59,8 +59,8 @@ public class User{
     }
 
     @Transient
-    public String getInfo(){
+    public String getInfo() {
 
-        return name + ":"+age;
+        return name + ":" + age;
     }
 }

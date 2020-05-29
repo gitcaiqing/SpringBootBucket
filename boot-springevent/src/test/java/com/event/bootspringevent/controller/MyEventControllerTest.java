@@ -37,6 +37,6 @@ public class MyEventControllerTest {
                         .contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("测试-请求结果：{}",mockMvcResult);
+        log.info("测试-请求结果：{}", mockMvcResult);
     }
 }

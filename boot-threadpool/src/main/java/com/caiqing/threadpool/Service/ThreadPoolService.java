@@ -5,10 +5,11 @@ package com.caiqing.threadpool.Service;
  * @Author CQ
  * @Date 2019/12/3 16:46
  **/
-public interface ThreadPoolService{
+public interface ThreadPoolService {
 
     /**
      * 异步
+     *
      * @param
      * @return void
      * @author CQ

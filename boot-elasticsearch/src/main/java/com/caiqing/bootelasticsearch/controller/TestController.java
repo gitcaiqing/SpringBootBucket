@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class TestController {
 
     @RequestMapping("/exportContainsCheck")
-    public String exportContainsCheck(){
+    public String exportContainsCheck() {
         return "导出成功";
     }
 }

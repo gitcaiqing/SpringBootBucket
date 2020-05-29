@@ -15,7 +15,7 @@ public class BootWebsocketApplication extends SpringBootServletInitializer {
     }
 
     @Override
-    protected SpringApplicationBuilder  configure(SpringApplicationBuilder builder) {
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(BootWebsocketApplication.class);
     }
 }

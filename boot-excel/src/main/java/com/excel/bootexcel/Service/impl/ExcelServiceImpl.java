@@ -23,6 +23,7 @@ import java.util.List;
 public class ExcelServiceImpl implements ExcelService {
     /**
      * 导出含下拉框的excel
+     *
      * @param
      * @return java.lang.String
      * @author CQ
@@ -39,7 +40,7 @@ public class ExcelServiceImpl implements ExcelService {
         List<String> titleCodeList = Arrays.asList("L01");
 
         List<List<String>> paramList = new ArrayList();
-        List<String> param = Arrays.asList("L01","L02","L03");
+        List<String> param = Arrays.asList("L01", "L02", "L03");
         paramList.add(param);
 
         HSSFWorkbook wb = ExcelExportUtil.createExcel(sheetName, titleList, titleCodeList, paramList);

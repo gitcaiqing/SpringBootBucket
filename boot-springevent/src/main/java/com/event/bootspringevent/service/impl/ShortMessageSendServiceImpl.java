@@ -13,39 +13,39 @@ import javax.transaction.Transactional;
 @Slf4j
 public class ShortMessageSendServiceImpl implements ShortMessageSendService {
 
-   /**
-    * 发送邮件
-    */
+    /**
+     * 发送邮件
+     */
     @Override
     public void sendShortMessage(User user) {
         log.info("\r\n");
         log.info(
-                "\n"+
-                "  　　 ┏┓　　┏┓ \n" +
-                "  　　┏┛┻━━━┛┻┓ \n" +
-                "  　    ┃　　　　　　　┃\n" +
-                "  　   ┃　　　━　　　┃ \n" +
-                "  　    ┃　┳┛　┗┳    ┃ \n" +
-                "  　　┃　　　　　　　┃ \n" +
-                "  　　┃　　　┻　　　┃ \n" +
-                "  　　┃　　　　　　　┃ \n" +
-                "  　　┗━┓　　　┏━┛ \n" +
-                "  　　　　┃　　　┃   \n" +
-                "  　　　　┃　　　┃ \n" +
-                "  　　　　┃　　　┗━━━┓ \n" +
-                "  　　　　┃　　　　　　　┣┓ \n" +
-                "  　　　　┃　　　　　　　┏┛ \n" +
-                "  　　　　┗┓┓┏━┳┓┏┛ \n" +
-                "  　　　　　┃┫┫　┃┫┫ \n" +
-                "  　　　　　┗┻┛　┗┻┛" +
-                " 给用户："+user.getName()+" 发送短信，手机号："+user.getMobile());
+                "\n" +
+                        "  　　 ┏┓　　┏┓ \n" +
+                        "  　　┏┛┻━━━┛┻┓ \n" +
+                        "  　    ┃　　　　　　　┃\n" +
+                        "  　   ┃　　　━　　　┃ \n" +
+                        "  　    ┃　┳┛　┗┳    ┃ \n" +
+                        "  　　┃　　　　　　　┃ \n" +
+                        "  　　┃　　　┻　　　┃ \n" +
+                        "  　　┃　　　　　　　┃ \n" +
+                        "  　　┗━┓　　　┏━┛ \n" +
+                        "  　　　　┃　　　┃   \n" +
+                        "  　　　　┃　　　┃ \n" +
+                        "  　　　　┃　　　┗━━━┓ \n" +
+                        "  　　　　┃　　　　　　　┣┓ \n" +
+                        "  　　　　┃　　　　　　　┏┛ \n" +
+                        "  　　　　┗┓┓┏━┳┓┏┛ \n" +
+                        "  　　　　　┃┫┫　┃┫┫ \n" +
+                        "  　　　　　┗┻┛　┗┻┛" +
+                        " 给用户：" + user.getName() + " 发送短信，手机号：" + user.getMobile());
     }
 
     /**
-     *监听
+     * 监听
      */
     @EventListener
-    public void sendMailListener(Order order){
+    public void sendMailListener(Order order) {
 
     }
 

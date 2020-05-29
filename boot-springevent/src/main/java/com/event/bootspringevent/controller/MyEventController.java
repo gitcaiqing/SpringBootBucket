@@ -23,7 +23,7 @@ public class MyEventController {
     private ApplicationContext applicationContext;
 
     @PostMapping("/publish")
-    public String publishEvent(){
+    public String publishEvent() {
         MyEvent myEvent = new MyEvent("myEvent");
         //事件广播器
 

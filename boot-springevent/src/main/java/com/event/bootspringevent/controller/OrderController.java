@@ -24,46 +24,49 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/createOrder")
-    public ResultModel createOrder(){
+    public ResultModel createOrder() {
         Order order = orderService.createOrder();
         return new ResultModel(order);
     }
 
     /**
      * 创建订单-事件发布-事件监听（同步）
+     *
      * @param
      * @return com.event.bootspringevent.util.ResultModel
      * @author CQ
      * @date 2020/2/21 15:56
      */
     @PostMapping("/createOrderWithEventSync")
-    public ResultModel createOrderWithEventSync(){
+    public ResultModel createOrderWithEventSync() {
         Order order = orderService.createOrderWithEvent(false);
         return new ResultModel(order);
     }
 
     /**
      * 创建订单-事件发布-事件监听（异步）
+     *
      * @param
      * @return com.event.bootspringevent.util.ResultModel
      * @author CQ
      * @date 2020/2/21 15:56
      */
     @PostMapping("/createOrderWithEventAsync")
-    public ResultModel createOrderWithEventAsync(){
+    public ResultModel createOrderWithEventAsync() {
         Order order = orderService.createOrderWithEvent(true);
         return new ResultModel(order);
     }
 
     /**
      * 创建订单-事件发布-事件监听（泛型事件）
+     *
      * @param
      * @return com.event.bootspringevent.util.ResultModel
      * @author CQ
      * @date 2020/2/21 15:56
      */
     @PostMapping("/createOrderWithGenericEvent")
-    public ResultModel createOrderWithGenericEvent(){
+    public ResultModel createOrderWithGenericEvent() {
         Order order = orderService.createOrderWithGenericEvent(true);
         return new ResultModel(order);
     }

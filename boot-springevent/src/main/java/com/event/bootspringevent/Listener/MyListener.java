@@ -14,7 +14,7 @@ import java.util.Date;
 @Slf4j
 @Component
 public class MyListener implements ApplicationListener<MyEvent> {
-    
+
     @Override
     public void onApplicationEvent(MyEvent myEvent) {
         log.info("监听MyEvent事件--->:{}, 时间：{}", myEvent, new Date().getTime());

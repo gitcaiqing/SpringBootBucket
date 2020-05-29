@@ -45,6 +45,7 @@ public class TransportClientConfig {
 
     /**
      * 解析节点IP信息,多个节点用逗号隔开,IP和端口用冒号隔开
+     *
      * @return
      */
     private Map<String, Integer> parseNodeIpInfo(String clusterNodes) {

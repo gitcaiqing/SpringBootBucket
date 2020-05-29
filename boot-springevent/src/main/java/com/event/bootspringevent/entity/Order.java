@@ -1,7 +1,6 @@
 package com.event.bootspringevent.entity;
 
 
-
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,7 +12,7 @@ public class Order {
 
     @Id
     @GeneratedValue
-    private Long id ;
+    private Long id;
 
     @Column(name = "order_id", length = 32)
     private String orderId;

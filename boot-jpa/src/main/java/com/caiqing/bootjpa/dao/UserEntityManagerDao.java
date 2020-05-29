@@ -24,7 +24,7 @@ public class UserEntityManagerDao {
     //@Autowired
     private EntityManagerFactory entityManagerFactory;
 
-    public List<Map<String,Object>> listUserMap(){
+    public List<Map<String, Object>> listUserMap() {
         String sql = "SELECT U.* FROM tb_user U";
         try {
             EntityManager em = entityManagerFactory.createEntityManager();
@@ -39,13 +39,13 @@ public class UserEntityManagerDao {
         return null;
     }
 
-    public List<Map<String,Object>> getUserMap(){
-        String sql =  "select u.* from tb_user u";
+    public List<Map<String, Object>> getUserMap() {
+        String sql = "select u.* from tb_user u";
         Query query = entityManager.createNativeQuery(sql);
         return query.getResultList();
     }
 
-    public List<Map<String, Object>> joinUserMap(){
+    public List<Map<String, Object>> joinUserMap() {
         String sql = "select u.*, a.money from tb_user u " +
                 " left join tb_account a on a.user_id = u.id";
         org.hibernate.Query query = entityManager.createNativeQuery(sql)
@@ -54,7 +54,7 @@ public class UserEntityManagerDao {
         return query.list();
     }
 
-    public List<User> listUser(){
+    public List<User> listUser() {
 //        String sql = "SELECT U.* FROM tb_user U";
 //        return entityManager.createNativeQuery(sql)
 //                .unwrap(org.hibernate.Query.class)
@@ -65,7 +65,7 @@ public class UserEntityManagerDao {
 
     }
 
-    public List<String> listUserName(){
+    public List<String> listUserName() {
         String sql = "SELECT U.name FROM tb_user U";
         return entityManager.createNativeQuery(sql).getResultList();
 

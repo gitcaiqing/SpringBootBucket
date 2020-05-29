@@ -24,7 +24,7 @@ spring:
     #消费者
     consumer:
       #指定消费者分组
-      group-id: user_log_group
+      group-id: user_log_group,user_log_group2
       auto-offset-reset: earliest
       enable-auto-commit: true
       auto-commit-interval: 100

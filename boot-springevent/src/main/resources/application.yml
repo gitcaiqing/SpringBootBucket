@@ -1,5 +1,6 @@
 server:
   port: 2005
+  context-path: /boot-springevent
 
 spring:
   datasource:

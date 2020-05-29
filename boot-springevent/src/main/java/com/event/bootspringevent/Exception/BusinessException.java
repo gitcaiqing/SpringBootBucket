@@ -3,7 +3,7 @@ package com.event.bootspringevent.Exception;
 import lombok.Data;
 
 @Data
-public class BusinessException extends RuntimeException{
+public class BusinessException extends RuntimeException {
 
     private Integer code = 201;
 

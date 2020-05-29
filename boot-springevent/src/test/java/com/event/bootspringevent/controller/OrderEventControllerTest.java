@@ -38,11 +38,12 @@ public class OrderEventControllerTest {
                         .contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("createOrder测试-请求结果：{}",mockMvcResult);
+        log.info("createOrder测试-请求结果：{}", mockMvcResult);
     }
 
     /**
      * 同步
+     *
      * @param
      * @return void
      * @author CQ
@@ -60,11 +61,12 @@ public class OrderEventControllerTest {
                         .contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("createOrderWithEventSync-请求结果：{}",mockMvcResult);
+        log.info("createOrderWithEventSync-请求结果：{}", mockMvcResult);
     }
 
     /**
      * 异步
+     *
      * @param
      * @return void
      * @author CQ
@@ -82,11 +84,12 @@ public class OrderEventControllerTest {
                         .contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("createOrderWithEventAsync-请求结果：{}",mockMvcResult);
+        log.info("createOrderWithEventAsync-请求结果：{}", mockMvcResult);
     }
 
     /**
      * 泛型
+     *
      * @param
      * @return void
      * @author CQ
@@ -104,6 +107,6 @@ public class OrderEventControllerTest {
                         .contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("createOrderWithEventAsync-请求结果：{}",mockMvcResult);
+        log.info("createOrderWithEventAsync-请求结果：{}", mockMvcResult);
     }
 }

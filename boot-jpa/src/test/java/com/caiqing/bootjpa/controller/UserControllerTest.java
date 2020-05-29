@@ -31,15 +31,15 @@ public class UserControllerTest {
         user.setName("我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我");
         user.setName(null);
         user.setName("");
-        String requestJson = JSON.toJSONString (user);
-        log.info("测试-请求参数：{}",requestJson);
+        String requestJson = JSON.toJSONString(user);
+        log.info("测试-请求参数：{}", requestJson);
 
         String uri = "/user/add";
         String mockMvcResult = mockMvc
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("测试-响应内容：{}",mockMvcResult);
+        log.info("测试-响应内容：{}", mockMvcResult);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class UserControllerTest {
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("测试-响应内容：{}",mockMvcResult);
+        log.info("测试-响应内容：{}", mockMvcResult);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class UserControllerTest {
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("测试-响应内容：{}",mockMvcResult);
+        log.info("测试-响应内容：{}", mockMvcResult);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class UserControllerTest {
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-        log.info("测试-响应内容：{}",mockMvcResult);
+        log.info("测试-响应内容：{}", mockMvcResult);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class UserControllerTest {
                     .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andReturn().getResponse().getContentAsString();
-            log.info("测试-响应内容：{}",mockMvcResult);
+            log.info("测试-响应内容：{}", mockMvcResult);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,7 +94,7 @@ public class UserControllerTest {
                     .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON).content(""))
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andReturn().getResponse().getContentAsString();
-            log.info("测试-响应内容：{}",mockMvcResult);
+            log.info("测试-响应内容：{}", mockMvcResult);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -17,7 +17,7 @@ import java.util.Map;
 public class WebSocketSendController {
 
     @GetMapping(value = "/sendString")
-    public boolean sendString(String message){
+    public boolean sendString(String message) {
         try {
             WebSocketServer webSocketServer = new WebSocketServer();
             webSocketServer.sendMessage(message);

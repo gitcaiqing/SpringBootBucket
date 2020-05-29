@@ -12,27 +12,27 @@ import java.util.concurrent.atomic.LongAdder;
 
 
 /**
-  *  ━━━━━━神兽出没━━━━━━ 
-  *　　　┏┓　　　┏┓ 
-  *　　┏┛┻━━━┛┻┓ 
-  *　    ┃　　　　　　　┃
-  *　   ┃　　　━　　　┃ 
-  *　    ┃　┳┛　┗┳    ┃ 
-  *　　┃　　　　　　　┃ 
-  *　　┃　　　┻　　　┃ 
-  *　　┃　　　　　　　┃ 
-  *　　┗━┓　　　┏━┛ 
-  *　　　　┃　　　┃   
-  *　　　　┃　　　┃ 
-  *　　　　┃　　　┗━━━┓ 
-  *　　　　┃　　　　　　　┣┓ 
-  *　　　　┃　　　　　　　┏┛ 
-  *　　　　┗┓┓┏━┳┓┏┛ 
-  *　　　　　┃┫┫　┃┫┫ 
-  *　　　　　┗┻┛　┗┻┛ 
-  * 
-  * ━━━━━━感觉萌萌哒━━━━━━ 
-  */
+ *  *  ━━━━━━神兽出没━━━━━━ 
+ *  *　　　┏┓　　　┏┓ 
+ *  *　　┏┛┻━━━┛┻┓ 
+ *  *　    ┃　　　　　　　┃
+ *  *　   ┃　　　━　　　┃ 
+ *  *　    ┃　┳┛　┗┳    ┃ 
+ *  *　　┃　　　　　　　┃ 
+ *  *　　┃　　　┻　　　┃ 
+ *  *　　┃　　　　　　　┃ 
+ *  *　　┗━┓　　　┏━┛ 
+ *  *　　　　┃　　　┃   
+ *  *　　　　┃　　　┃ 
+ *  *　　　　┃　　　┗━━━┓ 
+ *  *　　　　┃　　　　　　　┣┓ 
+ *  *　　　　┃　　　　　　　┏┛ 
+ *  *　　　　┗┓┓┏━┳┓┏┛ 
+ *  *　　　　　┃┫┫　┃┫┫ 
+ *  *　　　　　┗┻┛　┗┻┛ 
+ *  * 
+ *  * ━━━━━━感觉萌萌哒━━━━━━ 
+ */
 @ServerEndpoint(value = "/websocket")
 @Component
 @Slf4j
@@ -51,7 +51,7 @@ public class WebSocketServer {
      * 连接成功
      */
     @OnOpen
-    public void onOpen(Session session){
+    public void onOpen(Session session) {
         this.session = session;
         webSocketSet.add(this);
         //连接数+1
@@ -63,24 +63,26 @@ public class WebSocketServer {
      * 连接关闭
      */
     @OnClose
-    public void onClose(){
+    public void onClose() {
         webSocketSet.remove(this);
         //连接数据-1
         connectAccount.decrement();
-        log.info("有连接关闭，当前连接数为：{}",connectAccount);
+        log.info("有连接关闭，当前连接数为：{}", connectAccount);
     }
 
     /**
      * 收到客户端消息时调用
+     *
      * @param message
      */
     @OnMessage
-    public void onMessage(String message){
+    public void onMessage(String message) {
         log.info("收到客户端发来的消息，message -->{}", message);
     }
 
     /**
      * 发送消息
+     *
      * @param messaeg
      */
     public void sendMessage(String messaeg) throws IOException {
@@ -89,10 +91,11 @@ public class WebSocketServer {
 
     /**
      * 群发消息
+     *
      * @param message
      */
-    public static void sendInfo(String message){
-        for(WebSocketServer webSocketService : webSocketSet){
+    public static void sendInfo(String message) {
+        for (WebSocketServer webSocketService : webSocketSet) {
             try {
                 webSocketService.sendMessage(message);
             } catch (IOException e) {

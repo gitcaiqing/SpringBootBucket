@@ -21,13 +21,14 @@ public class KafkaTestController {
 
     /**
      * 10.67.8.78:2002/kafka-app/kafka/test/userLog
+     *
      * @param
      * @return java.lang.String
      * @author CQ
      * @date 2019/10/30 14:47
      */
     @GetMapping("/userLog")
-    public String kafkaTest(){
+    public String kafkaTest() {
         userLogProducer.sendLog("002");
         return "发送数据成功";
     }

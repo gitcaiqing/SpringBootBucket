@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
 
     @Autowired
-    private ShortMessageSendServiceImpl mailSendService;
+    private ShortMessageSendServiceImpl shortMessageSendService;
 
     @Autowired
     private ApplicationEventPublisher publisher;
@@ -58,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
 
             // 模拟异常情况
             // user = null;
-            mailSendService.sendShortMessage(user);
+            shortMessageSendService.sendShortMessage(user);
         } catch (Exception e) {
             e.printStackTrace();
             throw new BusinessException("下单异常");

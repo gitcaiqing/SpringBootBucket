@@ -19,6 +19,7 @@
         <module>boot-jpa</module>
         <module>boot-websocket</module>
         <module>boot-kafka</module>
+        <module>boot-java</module>
     </modules>
 
     <!--子模块无需在pom再次引入 可直接引用到以下jar包-->

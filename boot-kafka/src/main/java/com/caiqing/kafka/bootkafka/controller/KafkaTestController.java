@@ -29,7 +29,13 @@ public class KafkaTestController {
      */
     @GetMapping("/userLog")
     public String kafkaTest() {
-        userLogProducer.sendLog("002");
+        userLogProducer.sendLog("001");
+        return "发送数据成功";
+    }
+
+    @GetMapping("/userLog2")
+    public String kafkaTest2() {
+        userLogProducer.sendLog2("002");
         return "发送数据成功";
     }
 }

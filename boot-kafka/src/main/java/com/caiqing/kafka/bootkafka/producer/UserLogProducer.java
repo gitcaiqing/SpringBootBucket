@@ -24,10 +24,27 @@ public class UserLogProducer {
     public void sendLog(String userId) {
 
         try {
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 10; i++) {
                 UserLog userLog = new UserLog("kafkaTest" + i, userId + i, "0");
                 log.info("kafka发送的数据:{}", userLog);
                 ListenableFuture listenableFuture = kafkaTemplate.send("user_log", JSON.toJSONString(userLog));
+                log.info("listenableFuture:{}", listenableFuture.toString());
+                SettableListenableFuture settableListenableFuture = (SettableListenableFuture) listenableFuture;
+                log.info("settableListenableFuture:{}", settableListenableFuture.toString());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendLog2(String userId) {
+
+        try {
+            for (int i = 0; i < 10; i++) {
+                UserLog userLog = new UserLog("kafkaFactoryTest" + i, userId + i, "0");
+                log.info("kafka发送的数据:{}", userLog);
+                ListenableFuture listenableFuture = kafkaTemplate.send("user_log2", JSON.toJSONString(userLog));
                 log.info("listenableFuture:{}", listenableFuture.toString());
                 SettableListenableFuture settableListenableFuture = (SettableListenableFuture) listenableFuture;
                 log.info("settableListenableFuture:{}", settableListenableFuture.toString());

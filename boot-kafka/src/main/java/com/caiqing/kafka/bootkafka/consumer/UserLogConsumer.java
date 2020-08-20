@@ -6,6 +6,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -26,5 +27,25 @@ public class UserLogConsumer {
             log.info("kafka消费的消息：{}", message);
         }
     }
+
+
+    @KafkaListener(topics = "user_log2", containerFactory = "concurrentKafkaListenerContainerFactory")
+    public void consumer2(List<ConsumerRecord<?,?>> consumerRecords) {
+        Optional kafkaMessage = Optional.ofNullable(consumerRecords);
+        log.info("");
+        log.info("kafka消费者接收到的consumerRecords：{}", kafkaMessage);
+        if (kafkaMessage.isPresent()) {
+            Object message = kafkaMessage.get();
+            log.info("kafka批量消费的消息：{}", message);
+            log.info("kafka批量消费数量：{}", consumerRecords.size());
+            for(ConsumerRecord consumerRecord : consumerRecords){
+                Optional msg = Optional.ofNullable(consumerRecord);
+                if(msg.isPresent()){
+                    log.info("kafka 消费某条记录：{}", msg);
+                }
+            }
+        }
+    }
+
 
 }

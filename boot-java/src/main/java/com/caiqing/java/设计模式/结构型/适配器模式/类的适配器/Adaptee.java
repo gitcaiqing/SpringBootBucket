@@ -1,7 +1,7 @@
 package com.caiqing.java.设计模式.结构型.适配器模式.类的适配器;
 
 /**
- * @Description TODO
+ * @Description 被访问的适配者类
  * @Author CQ
  * @Date 2020/6/29 13:35
  **/

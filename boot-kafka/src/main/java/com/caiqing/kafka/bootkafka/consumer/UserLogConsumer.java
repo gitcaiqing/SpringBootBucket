@@ -34,7 +34,11 @@ public class UserLogConsumer {
         Optional kafkaMessage = Optional.ofNullable(consumerRecords);
         log.info("");
         log.info("kafka消费者接收到的consumerRecords：{}", kafkaMessage);
-        if (kafkaMessage.isPresent()) {
+
+        //模拟消费异常
+        throw new RuntimeException("消费异常");
+
+        /*if (kafkaMessage.isPresent()) {
             Object message = kafkaMessage.get();
             log.info("kafka批量消费的消息：{}", message);
             log.info("kafka批量消费数量：{}", consumerRecords.size());
@@ -44,7 +48,7 @@ public class UserLogConsumer {
                     log.info("kafka 消费某条记录：{}", msg);
                 }
             }
-        }
+        }*/
     }
 
 

@@ -3,7 +3,7 @@ package com.caiqing.java.设计模式.结构型.享元模式;
 import java.util.HashMap;
 
 /**
- * @Description TODO
+ * @Description 享元工厂
  * @Author CQ
  * @Date 2020/6/29 16:49
  **/

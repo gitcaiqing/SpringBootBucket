@@ -1,7 +1,7 @@
 package com.caiqing.java.设计模式.结构型.享元模式;
 
 /**
- * @Description TODO
+ * @Description 具体享元类， 方法中传入非享元对象
  * @Author CQ
  * @Date 2020/6/29 16:36
  **/

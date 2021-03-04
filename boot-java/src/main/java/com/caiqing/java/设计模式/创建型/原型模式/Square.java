@@ -12,14 +12,14 @@ public class Square implements Shap{
     public Object clone() {
         Square square = null;
         try {
-            square = (Square) super.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-            System.out.println("拷贝失败");
-        }
+        square = (Square) super.clone();
+    } catch (CloneNotSupportedException e) {
+        e.printStackTrace();
+        System.out.println("拷贝失败");
+    }
 
         return square;
-    }
+}
 
     @Override
     public void countArea() {

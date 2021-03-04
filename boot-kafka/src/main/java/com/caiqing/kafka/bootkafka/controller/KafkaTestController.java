@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Author CQ
  * @Date 2019/10/30 14:22
  **/
-@RestController
+@Controller
 @RequestMapping("/kafka/test")
 public class KafkaTestController {
 
@@ -34,6 +35,7 @@ public class KafkaTestController {
     }
 
     @GetMapping("/userLog2")
+    @ResponseBody
     public String kafkaTest2() {
         userLogProducer.sendLog2("002");
         return "发送数据成功";
